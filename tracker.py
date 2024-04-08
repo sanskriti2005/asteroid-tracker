@@ -25,7 +25,7 @@ def read_user_args():
         "-s",
         "--size",
         action="store_true",
-        help="displays the size of the asteroid(s) in metres"
+        help="displays information of the size of the asteroid(s)"
     )
 
     #Distance of the Asteroid (From Earth)
@@ -33,7 +33,7 @@ def read_user_args():
         "-d",
         "--distance",
         action="store_true",
-        help="displays the distance of the asteroid(s) from Earth in kilometres"
+        help="displays information of the distance of the asteroid(s) from Earth"
     )
 
     return parser.parse_args()
