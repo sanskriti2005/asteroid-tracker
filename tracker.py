@@ -115,6 +115,14 @@ def display_info(asteroid_data, size=False, distance=False):
             print(f"Name: {asteroid['name']}")
             print(f"NEO Reference ID: {asteroid['neo_reference_id']}")
 
+            # If size argument is True, print the size of the asteroid
+            if size:
+                print(f"Estimated Diameter (in meters): {asteroid['estimated_diameter']['meters']['estimated_diameter_min']} - {asteroid['estimated_diameter']['meters']['estimated_diameter_max']}")
+
+            # If distance argument is True, print the distance of the asteroid from Earth
+            if distance:
+                print(f"Miss Distance (in kilometers): {asteroid['close_approach_data'][0]['miss_distance']['kilometers']}")
+
 
 
 
