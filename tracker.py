@@ -48,7 +48,7 @@ def build_url(start_date, end_date):
     #Converting start date into url format
     try:
         parsed_start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d")
-        return parsed_start_date.strftime("%Y-%m-%d")
+        start_date = parsed_start_date.strftime("%Y-%m-%d")
     except ValueError:
         print(f"Invalid date format: {start_date}. Please use the format YYYY-MM-DD.")
         return None
@@ -56,7 +56,7 @@ def build_url(start_date, end_date):
     #Converting end date into url format
     try:
         parsed_end_date = datetime.datetime.strptime(end_date, "%Y-%m-%d")
-        return parsed_end_date.strftime("%Y-%m-%d")
+        end_date = parsed_end_date.strftime("%Y-%m-%d")
     except ValueError:
         print(f"Invalid date format: {end_date}. Please use the format YYYY-MM-DD.")
         return None
@@ -67,6 +67,7 @@ def build_url(start_date, end_date):
     )
 
     return url 
+
 
 
 #GET DATA FROM THE URL
@@ -105,14 +106,15 @@ def get_data(url):
 def display_info(asteroid_data, size=False, distance=False):
     #Iterate over each date in the data
     for date in asteroid_data['near_earth_objects']:
-        print(f"\\nDate: {date}")
+        print(f"\nDate: {date}")
 
         
          # Iterate over each asteroid on that date
         for asteroid in asteroid_data["near_earth_objects"][date]:
-            print(f"\\nAsteroid ID: {asteroid['id']}")
+            print(f"\nAsteroid ID: {asteroid['id']}")
             print(f"Name: {asteroid['name']}")
             print(f"NEO Reference ID: {asteroid['neo_reference_id']}")
+
 
 
 
@@ -121,6 +123,7 @@ if __name__ == "__main__":
      user_args = read_user_args()
      query_url = build_url(user_args.start_date, user_args.end_date)
      asteroid_data = get_data(query_url)
+     display_info(asteroid_data)
 
     
 
