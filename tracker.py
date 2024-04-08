@@ -3,6 +3,7 @@ import os
 from urllib import parse, request, error
 import json
 import sys
+import datetime
 
 
 #API KEY ENVIRONEMENT VARIABLE
@@ -36,6 +37,40 @@ def read_user_args():
     )
 
     return parser.parse_args()
+
+
+
+base_url = "https://api.nasa.gov/neo/rest/v1/feed?"
+def build_url(start_date, end_date):
+    #API key
+    api_key = get_api_key()
+
+    #Converting start date into url format
+    try:
+        parsed_start_date = datetime.datetime.strptime(start_date, "%Y-%m-%d")
+        return parsed_start_date.strftime("%Y-%m-%d")
+    except ValueError:
+        print(f"Invalid date format: {start_date}. Please use the format YYYY-MM-DD.")
+        return None
+    
+    #Converting end date into url format
+    try:
+        parsed_end_date = datetime.datetime.strptime(end_date, "%Y-%m-%d")
+        return parsed_end_date.strftime("%Y-%m-%d")
+    except ValueError:
+        print(f"Invalid date format: {end_date}. Please use the format YYYY-MM-DD.")
+        return None
+    
+    #the url
+    url = (
+        f"{base_url}start_date={start_date}&end_date={end_date}&api_key={api_key}"
+    )
+
+    return url 
+
+
+
+
 
 
 
