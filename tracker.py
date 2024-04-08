@@ -30,10 +30,10 @@ def read_user_args():
 
     #Distance of the Asteroid (From Earth)
     parser.add_argument(
-        "-s",
-        "--size",
+        "-d",
+        "--distance",
         action="store_true",
-        help="displays the size of the asteroid(s) in kilometres"
+        help="displays the distance of the asteroid(s) from Earth in kilometres"
     )
 
     return parser.parse_args()
@@ -69,8 +69,60 @@ def build_url(start_date, end_date):
     return url 
 
 
+#GET DATA FROM THE URL
+def get_data(url):
+    #create a request object for the url and include a user-agent
+    req = request.Request(url, headers={"User-Agent":"Mozilla/5.0"})
 
 
+    #initiating the http request from the request object
+    try:
+            
+            response = request.urlopen(req)
+
+        #incase of an error    
+    except error.HTTPError as http_error:
+        #401 Unauthorized
+        if http_error.code == 401:
+            sys.exit("Access Denied, Check your API key.")
+         #401 Not-Found
+        elif http_error.code == 404:
+            sys.exit("Can't find the data for the mentioned dates.")
+        else: 
+            sys.exit(f"Something went wrong... ({http_error.code})")
+
+    #reading the data from the response
+    data = response.read()
+
+    #returns deserialized json
+    try:
+        return json.loads(data)
+        
+    #unless.. there is an error 
+    except:
+         sys.exit("Couldn't read the server response")
+
+def display_info(asteroid_data, size=False, distance=False):
+    #Iterate over each date in the data
+    for date in asteroid_data['near_earth_objects']:
+        print(f"\\nDate: {date}")
+
+        
+         # Iterate over each asteroid on that date
+        for asteroid in asteroid_data["near_earth_objects"][date]:
+            print(f"\\nAsteroid ID: {asteroid['id']}")
+            print(f"Name: {asteroid['name']}")
+            print(f"NEO Reference ID: {asteroid['neo_reference_id']}")
+
+
+
+
+if __name__ == "__main__":
+     user_args = read_user_args()
+     query_url = build_url(user_args.start_date, user_args.end_date)
+     asteroid_data = get_data(query_url)
+
+    
 
 
 
