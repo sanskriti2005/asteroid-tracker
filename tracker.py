@@ -133,7 +133,7 @@ if __name__ == "__main__":
      user_args = read_user_args()
      query_url = build_url(user_args.start_date, user_args.end_date)
      asteroid_data = get_data(query_url)
-     display_info(asteroid_data)
+     display_info(asteroid_data, size=user_args.size, distance=user_args.distance)
 
     
 
