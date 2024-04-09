@@ -2,7 +2,7 @@
 
 This Python script fetches information on near-Earth asteroids within a specified date range using NASA's Near Earth Object Web Service (NeoWs). NeoWs is a RESTful web service for near earth Asteroid information.
 
-My CLI application takes the `start_date` and `end_date` as arguments and outputs the name, Asteroid ID as well as NEO Refernce ID of the asteroid(s) within the specified date range.
+My CLI application takes the `start_date` and `end_date` as arguments and outputs the name, Asteroid ID as well as NEO Reference ID of the asteroid(s) within the specified date range.
 
 It also takes optional arguments `-s` or `--size` that gives us information about the asteroid's size and the `-d` or the `--distance` optional argument that outputs the information on distance bwteween the Earth and the Asteroid.
 

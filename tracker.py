@@ -103,6 +103,8 @@ def get_data(url):
     except:
          sys.exit("Couldn't read the server response")
 
+
+#DISPLAY INFORMATION
 def display_info(asteroid_data, size=False, distance=False):
     #Iterate over each date in the data
     for date in asteroid_data['near_earth_objects']:
@@ -126,7 +128,7 @@ def display_info(asteroid_data, size=False, distance=False):
 
 
 
-
+#MAIN FUNCTION
 if __name__ == "__main__":
      user_args = read_user_args()
      query_url = build_url(user_args.start_date, user_args.end_date)
