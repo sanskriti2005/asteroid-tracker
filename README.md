@@ -4,7 +4,7 @@ This Python script fetches information on near-Earth asteroids within a specifie
 
 My CLI application takes the `start_date` and `end_date` as arguments and outputs the name, Asteroid ID as well as NEO Reference ID of the asteroid(s) within the specified date range.
 
-It also takes optional arguments `-s` or `--size` that gives us information about the asteroid's size and the `-d` or the `--distance` optional argument that outputs the information on distance bwteween the Earth and the Asteroid.
+It also takes optional arguments `-s` or `--size` that gives us information about the asteroid's size and the `-d` or the `--distance` optional argument that outputs the information on distance between the Earth and the Asteroid.
 
 
 
